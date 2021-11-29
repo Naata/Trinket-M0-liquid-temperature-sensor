@@ -26,7 +26,7 @@ Simple program and PS script to allow monitoring of liquid temps in liquid cooli
 
 Keep in mind that colors will tend to shift from blue -> green -> yellow -> red smoothly, so it's best to expect soe color range as indication of actual temperature.
 
-## Control PC fans using liquid temperature
+## Control PC fans using temp sensor - PowerShell
 1. I use tool called [Fan Control](https://github.com/Rem0o/FanControl.Releases). It's a great free tool that accepts file as mock "sensor". We can log our liquid temp into file and **Fan Control** will control our fans using this file. Download the tool and create new custom sensor.
 2. Launch Windows Scheduler and create new Task:
 - basic: administrator privileges + launch regardless of logged in user
@@ -34,5 +34,6 @@ Keep in mind that colors will tend to shift from blue -> green -> yellow -> red 
 - actions: launch program - powershell, arguments: -command &{path-to\Trinket-M0-liquid-temperature-sensor\src\WatchLiquidTemp.ps1 -filePath 'path-to\FanControl\LiquidTemp.sensor' -com COM5} (change COM5 to whatever is seen by your system)
 3. Save your task and restart system. After reboot your custom sensor should display values from liquid temp sensor.
   
-## TODO
-Create custom plugin for **Fan Control** to remove the need to use powershell
+## Control PC fans using temp sensor - FanControl Plugin
+1. I use tool called [Fan Control](https://github.com/Rem0o/FanControl.Releases). Download latest plugin DLL from [Releases](https://github.com/Naata/Trinket-M0-liquid-temperature-sensor/releases). Use instructions from [FanControl Wiki](https://github.com/Rem0o/FanControl.Releases/wiki/Plugins#requirements).
+2. Works! :)
