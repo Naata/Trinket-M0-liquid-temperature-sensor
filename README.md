@@ -36,4 +36,5 @@ Keep in mind that colors will tend to shift from blue -> green -> yellow -> red 
   
 ## Control PC fans using temp sensor - FanControl Plugin
 1. I use tool called [Fan Control](https://github.com/Rem0o/FanControl.Releases). Download latest plugin DLL from [Releases](https://github.com/Naata/Trinket-M0-liquid-temperature-sensor/releases). Use instructions from [FanControl Wiki](https://github.com/Rem0o/FanControl.Releases/wiki/Plugins#requirements).
+2. Set environment variable SENSOR_COM_PORT to whichever com port your trinket is connected to
 2. Works! :)
