@@ -7,7 +7,7 @@ Simple program and PS script to allow monitoring of liquid temps in liquid cooli
 
 2. Buy yourself a [Trinket M0](https://www.adafruit.com/product/3500). This is a board I used, but feel free to use a different one and change the code as needed. **Trinket M0** is very cool as it can natively output serial data via USB, and it can be seen in Windows as COM device. It also has RGB diode which is useful to have some indication of liquid temperature without need to access data in OS.
 
-3. Solder some goldpins to your **Trinket M0** - pin **A4** will be used as analog input, which is conveniant as **GND** is right next to it.
+3. Solder some goldpins to your **Trinket M0** - pin **A4** will be used as analog input, which is conveniant as **GND** is right next to it. (check `Troubleshooting for additional solder points you may have to add)  
 
 4. Flash [trinket_m0_temp_sensor.ino](src/trinket_m0_temp_sensor.ino) into your board.
 
@@ -26,6 +26,10 @@ Simple program and PS script to allow monitoring of liquid temps in liquid cooli
 
 Keep in mind that colors will tend to shift from blue -> green -> yellow -> red smoothly, so it's best to expect soe color range as indication of actual temperature.
 
+## Reading the output from the **Trinket M0**
+You can use the tool [PuTTY]([www.putty.org](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to read the output. On PuTTY, switch the connection type to `Serial`, set the `Serial Line` to your COM port (COM3, for instance), and verify that the speed is `9600`.  
+When you click open, it should be reading out values.
+
 ## Control PC fans using temp sensor - PowerShell
 1. I use tool called [Fan Control](https://github.com/Rem0o/FanControl.Releases). It's a great free tool that accepts file as mock "sensor". We can log our liquid temp into file and **Fan Control** will control our fans using this file. Download the tool and create new custom sensor.
 2. Launch Windows Scheduler and create new Task:
@@ -38,3 +42,8 @@ Keep in mind that colors will tend to shift from blue -> green -> yellow -> red 
 1. I use tool called [Fan Control](https://github.com/Rem0o/FanControl.Releases). Download latest plugin DLL from [Releases](https://github.com/Naata/Trinket-M0-liquid-temperature-sensor/releases). Use instructions from [FanControl Wiki](https://github.com/Rem0o/FanControl.Releases/wiki/Plugins#requirements).
 2. Set environment variable SENSOR_COM_PORT to whichever com port your trinket is connected to
 2. Works! :)
+
+## Troubleshooting
+If you have flucuating values coming from the probe, you will need to solder a 10K resistor between the **3V** and **A4**.  
+If you don't have one of that resistance, you can get once close to that. Just make sure to update the `SERIESRESISTOR` in the .ino file to the correct resistance.
+
